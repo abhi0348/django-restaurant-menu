@@ -1,0 +1,459 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+/* ///////////..utility classes../////////// */
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 1em;
+    text-transform: uppercase;
+    font-weight: small;
+}
+
+.btn-primary {
+    color: #fff;
+    background: #16a083;
+}
+
+.btn-primary:hover {
+    background: #117964;
+    transition: background 0.3s ease-in-out;
+}
+
+/* ............/navbar/............ */
+
+/* Navbar styles */
+.navbar {
+    box-shadow: 0px 5px 10px 0px #aaa;
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    opacity: 0.85;
+    height: 50px;
+    /* Fixed height */
+    z-index: 12;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    /* Adjust height for centering */
+}
+
+.menu-items {
+    order: 2;
+    display: flex;
+    position: relative;
+    /* Needed for dropdown positioning */
+}
+
+.menu-items li {
+    list-style: none;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    /* Enable dropdown positioning */
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    /* Positioned below the menu item */
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.menu-items li:hover .dropdown-menu,
+.dropdown-menu.show {
+    display: block;
+    /* Show on hover or when explicitly set to show */
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+    /* Highlight on hover */
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    color: #333;
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.menu-items a:hover {
+    color: #117964;
+    transition: color 0.3s ease-in-out;
+}
+
+.logo {
+    order: 1;
+    font-size: 2.3rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ............//// Showcase styling ////......... */
+
+.showcase-area {
+    height: 50vh;
+    background: linear-gradient(rgba(240, 240, 240, 0.144),
+            rgba(255, 255, 255, 0.336)),
+        url("https://i.postimg.cc/wT3TQS3V/header-image2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.6rem;
+}
+
+.main-title {
+    text-transform: uppercase;
+    margin-top: 1.5em;
+}
+
+/* ......//about us//...... */
+
+#about {
+    padding: 50px 0;
+    background: #f5f5f7;
+}
+
+.about-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#about h2 {
+    font-size: 2.3rem;
+}
+
+#about p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+#about .small {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.about-img {
+    flex: 1 1 400px;
+    padding: 30px;
+    transform: translateX(150%);
+    animation: about-img-animation 1s ease-in-out forwards;
+}
+
+@keyframes about-img-animation {
+    100% {
+        transform: translate(0);
+    }
+}
+
+.about-text {
+    flex: 1 1 400px;
+    padding: 30px;
+    margin: auto;
+    transform: translate(-150%);
+    animation: about-text-animation 1s ease-in-out forwards;
+}
+
+@keyframes about-text-animation {
+    100% {
+        transform: translate(0);
+    }
+}
+
+.about-img img {
+    display: block;
+    height: 400px;
+    max-width: 100%;
+    margin: auto;
+    object-fit: cover;
+    object-position: right;
+}
+
+/* ..........////Food category///........... */
+
+#food {
+    padding: 5rem 0 10rem 0;
+}
+
+#food h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: #555;
+}
+
+.food-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.food-container img {
+    display: block;
+    width: 100%;
+    margin: auto;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-container {
+    margin: 0 1rem;
+    position: relative;
+}
+
+.img-content {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 2;
+    text-align: center;
+    transition: all 0.3s ease-in-out 0.1s;
+}
+
+.img-content h3 {
+    color: #fff;
+    font-size: 2.2rem;
+}
+
+.img-content a {
+    font-size: 1.2rem;
+}
+
+.img-container::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.871);
+    opacity: 0;
+    z-index: 1;
+
+    transform: scaleY(0);
+    transform-origin: 100% 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.img-container:hover::after {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.img-container:hover .img-content {
+    opacity: 1;
+    top: 40%;
+}
+
+/* .........../Food Menu/............ */
+
+.food-menu-heading {
+    text-align: center;
+    font-size: 3.4rem;
+    font-weight: 400;
+    color: #666;
+}
+
+.food-menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 0px 30px 0px;
+}
+
+.food-menu-container img {
+    display: block;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.food-menu-item {
+    display: flex;
+    flex: 1 1 600px;
+    justify-content: space-evenly;
+    margin-bottom: 3rem;
+}
+
+.food-description {
+    margin: auto 1.5rem;
+}
+
+.font-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #444;
+}
+
+.food-description p {
+    font-size: 1.4rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.food-description .food-price {
+    color: #117964;
+    font-weight: 700;
+}
+
+/* ........./ Testimonial /.......... */
+/* ........./ Testimonial /.......... */
+
+#testimonials {
+    padding: 5rem 0;
+    background: rgba(243, 243, 243);
+}
+
+.testimonial-title {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #555;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    margin-top: 2rem;
+}
+
+.testimonial-item {
+    flex: 1 1 250px;
+    margin: 0 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    background: #fff;
+}
+
+.testimonial-item img {
+    display: block;
+    width: 40px;
+    /* Adjusted width */
+    height: 40px;
+    /* Adjusted height */
+    border-radius: 50%;
+    position: absolute;
+    top: -20px;
+    /* Adjusted position */
+    left: 10px;
+}
+
+.testimonial-item p {
+    margin-top: 30px;
+}
+
+/* .........../ Responsive /......... */
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        padding: 10px;
+        height: auto;
+        /* Adjust height for mobile */
+    }
+
+    .menu-items {
+        flex-direction: column;
+        /* Stack menu items vertically */
+        order: 1;
+        /* Change order for mobile */
+    }
+
+    .menu-items li {
+        margin-left: 0;
+        /* Remove left margin */
+        margin-bottom: 0.5rem;
+    }
+
+    .food-menu-container {
+        flex-direction: column;
+        /* Stack food menu items vertically */
+    }
+
+    .food-menu-item {
+        flex-direction: column;
+        /* Change to column layout */
+        align-items: center;
+        /* Center items */
+    }
+
+    .food-description {
+        text-align: center;
+        /* Center text */
+    }
+}

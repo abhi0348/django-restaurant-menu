@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    {% load static %}
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* Basic CSS styles for the menu page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation bar styles */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            /* Space between nav items and category links */
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .category-links {
+            display: flex;
+            gap: 10px;
+            /* Space between category links */
+        }
+
+        .category-links button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .category-links button:hover {
+            background-color: #777;
+        }
+
+        /* Main content styles */
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        small {
+            display: block;
+            color: #666;
+        }
+
+        .dish-list {
+            display: none;
+        }
+
+        .dish-list.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <!-- Category buttons -->
+        <div class="category-links">
+            {% for category in categories %}
+            <button data-category="{{ category.id }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <h1>
+        {% if user.is_authenticated %}
+        {{ user.username }}'s Menu
+        {% else %}
+        Our Menu
+        {% endif %}
+    </h1>
+    {% for category in categories %}
+    <div class="dish-list" data-category="{{ category.id }}">
+        <h2>{{ category.name }}</h2>
+        <ul>
+            <!-- Loop through dishes in each category -->
+            {% for dish in category.dish_set.all %}
+            <li>
+                {{ dish.name }} - ${{ dish.price }}<br>
+                <small>{{ dish.description }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    </div>
+
+    <!-- JavaScript for dynamic filtering -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.category-links button');
+            const dishLists = document.querySelectorAll('.dish-list');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const categoryId = button.getAttribute('data-category');
+
+                    dishLists.forEach(list => {
+                        if (list.getAttribute('data-category') === categoryId) {
+                            list.classList.add('active');
+                        } else {
+                            list.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

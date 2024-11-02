@@ -1,0 +1,208 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restraunt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_menu.css' %}">
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1 class="logo">RS</h1>
+            <ul class="menu-items">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+
+                <!-- Dropdown for "Shop by" options -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Shop</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#category">Shop by Category</a></li>
+                        <li><a href="#calories">Shop by Calories</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#food-menu">Menu</a></li>
+                <li><a href="#testimonials">Testimonial</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+    </nav>
+
+
+
+    <section class="showcase-area" id="showcase">
+        <div class="showcase-container">
+            <h1 class="main-title" id="home">Eat Right Food</h1>
+            <p>Eat Healty, it is good for our health.</p>
+            <a href="#food-menu" class="btn btn-primary">Menu</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-wrapper container">
+            <div class="about-text">
+                <p class="small">About Us</p>
+                <h2>We've beem making healthy food last for 10 years</h2>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse ab
+                    eos omnis, nobis dignissimos perferendis et officia architecto,
+                    fugiat possimus eaque qui ullam excepturi suscipit aliquid optio,
+                    maiores praesentium soluta alias asperiores saepe commodi
+                    consequatur? Perferendis est placeat facere aspernatur!
+                </p>
+            </div>
+            <div class="about-img">
+                <img src="https://i.postimg.cc/mgpwzmx9/about-photo.jpg" alt="food" />
+            </div>
+        </div>
+        <section id="food">
+            <h2>Types of Food</h2>
+            <div class="food-container container">
+                <!-- Loop through the categories from the context -->
+                {% for category in categories %}
+                <div class="food-type {{ category.name|lower }}">
+                    <div class="img-container">
+                        <!-- Replace with an actual image URL or default if none -->
+                        <img src="{{ category.image_url|default:'https://i.postimg.cc/yxThVPXk/food1.jpg' }}"
+                            alt="{{ category.name }}" />
+                        <div class="img-content">
+                            <h3>{{ category.name }}</h3>
+                            <!-- Link to filter dishes by this category -->
+                            <a href="?category={{ category.id }}" class="btn btn-primary">View Dishes</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="food-menu">
+            <h2 class="food-menu-heading">Food Menu</h2>
+            <div class="food-menu-container container">
+                <!-- Loop through each dish in the context -->
+                {% if dishes %}
+                {% for dish in dishes %}
+                <div class="food-menu-item">
+                    <div class="food-img">
+                        <img src="{{ dish.image_url|default:'https://i.postimg.cc/wTLMsvSQ/food-menu1.jpg' }}"
+                            alt="{{ dish.name }}" />
+                    </div>
+                    <div class="food-description">
+                        <h2 class="food-title">{{ dish.name }}</h2>
+                        <p>{{ dish.description }}</p>
+                        <p class="food-price">Price: &#8377; {{ dish.price }}</p>
+                        <p> Calories: {{dish.calories}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No dishes found for this category.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <h2 class="testimonial-title">What Our Customers Say</h2>
+            <div class="testimonial-container container">
+                <div class="testimonial-box">
+                    <div class="customer-detail">
+                        <div class="customer-photo">
+                            <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />
+                            <p class="customer-name">Ross Lee</p>
+                        </div>
+                    </div>
+                    <div class="star-rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
+                        voluptas cupiditate aspernatur odit doloribus non.
+                    </p>
+
+                </div>
+                <div class="testimonial-box">
+                    <div class="customer-detail">
+                        <div class="customer-photo">
+                            <img src="https://i.postimg.cc/sxd2xCD2/female-photo1.jpg" alt="" />
+                            <p class="customer-name">Amelia Watson</p>
+                        </div>
+                    </div>
+                    <div class="star-rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
+                        voluptas cupiditate aspernatur odit doloribus non.
+                    </p>
+
+                </div>
+                <div class="testimonial-box">
+                    <div class="customer-detail">
+                        <div class="customer-photo">
+                            <img src="https://i.postimg.cc/fy90qvkV/male-photo3.jpg" alt="" />
+                            <p class="customer-name">Ben Roy</p>
+                        </div>
+                    </div>
+                    <div class="star-rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <p class="testimonial-text">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
+                        voluptas cupiditate aspernatur odit doloribus non.
+                    </p>
+
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="contact-container container">
+                <div class="contact-img">
+                    <img src="https://i.postimg.cc/1XvYM67V/restraunt2.jpg" alt="" />
+                </div>
+
+                <div class="form-container">
+                    <h2>Contact Us</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- Changed from <a> to <button> -->
+                    </form>
+                </div>
+            </div>
+        </section>
+        <footer id="footer">
+            <h2>Restraunt &copy; all rights reserved</h2>
+        </footer>
+        <!-- .................../ JS Code for smooth scrolling /...................... -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="{% static 'js/menu.js' %}"></script>
+
+</html>
+
+</body>
+
+</html>
